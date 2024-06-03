@@ -1,16 +1,24 @@
 <p>Datos del producto </p>
-<form (ngSubmit)="updateItem()" *ngIf="item">
+<form (submit)="updateItem()">
     <div>
         <div>
-            <label for="name">Name</label>
+            <label for="name">Name:</label>
             <input type="text" name="name" [(ngModel)]="item.name">
         </div>
         
         <div>
-            <label for="description">Name</label>
-            <input type="text" name="name" [(ngModel)]="item.name">
+            <label for="description">Description</label>
+            <input type="text" name="description" [(ngModel)]="item.description">
         </div>
 
-
+        <div>
+            <label for="deparment">Department</label>
+            <select name="department" [(ngModel)]="selectDepartmentId">
+                <option *ngFor="let d of department" [value]="d.departmentID">{{d.name}}</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" value="Enviar">Actualizar</button>
+        </div>
     </div>
 </form>

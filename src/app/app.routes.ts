@@ -8,7 +8,7 @@ export const routes: Routes = [
     //ruta raiz
     {path:'',component:HomeComponent},
     {path:'app-item-view/:id',component:ItemViewComponent},
-    {path:'app-item-update',component:ItemUpdateComponent}
+    {path:'app-item-update/:id',component:ItemUpdateComponent}
 ];
 
 @NgModule({

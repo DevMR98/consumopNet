@@ -10,8 +10,9 @@ import { ItemService } from '../item.service';
   styleUrl: './item-view.component.css'
 })
 export class ItemViewComponent implements OnInit {
-  id?:number;
-  item:any;
+  //inicializadas en cero por que angular las toma al renderizar todo y causa error por que supuestament no encuentra nada
+  id:number=0;
+  item:any={};
 
   constructor(
     private route:ActivatedRoute,
@@ -22,8 +23,10 @@ export class ItemViewComponent implements OnInit {
     this.id=Number(this.route.snapshot.paramMap.get('id'));
     console.log(this.id);
     this.itemService.getItemById(this.id).subscribe({
+
       next:resp=>{
         this.item=resp;
+        console.log(this.item);
       },
       error: err=>{
         console.log("Error fetching API ",err);
