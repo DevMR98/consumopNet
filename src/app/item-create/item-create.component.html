@@ -1,0 +1,24 @@
+<form [formGroup]="itemForm" (ngSubmit)="onSumbit()">
+    <div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" formControlName="name">
+        </div>
+        
+        <div>
+            <label for="description">Description</label>
+            <input type="text" formControlName="description" >
+        </div>
+
+        <div>
+            <label for="deparment">Department</label>
+            <select formControlName="departmentID" >
+                <option value="" disabled>--Seleccione una opcion--</option>
+                <option *ngFor="let d of departments" [value]="d.departmentID">{{d.name}}</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Crear Registro</button>
+        </div>
+    </div>
+</form>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ItemService } from '../item.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -19,17 +19,38 @@ export class HomeComponent {
   isLogged=true;
 
 
-  constructor(private _itemS:ItemService){
+  constructor(private _itemS:ItemService,private route:ActivatedRoute,private router:Router){
 
   }
 
   product:any[]=[];
- 
+  id:any;
   
   ngOnInit(){
     this._itemS.getAllItems().subscribe(data=>{
       this.product=data;
     });
   }
+
+  deleteItem(itemId:number){
+    this._itemS.deleteItem(itemId).subscribe({
+      next:data=>{
+        alert("Item erased succesfully");
+        window.location.reload();
+      },
+      error:err=>{
+        console.log("error erased Itemn",err);
+      }
+    });
+
+  }
+  confirmDelete(itemID:number){
+    if(confirm("Are you sure do you want this item?")){
+      this.deleteItem(itemID);
+    }
+
+  }
+
+  
  
 }

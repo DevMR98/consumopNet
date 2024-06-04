@@ -19,4 +19,12 @@ export class ItemService {
   updateItem(id:number,item:any):Observable<any>{
     return this._http.put(`https://localhost:7075/api/item/${id}`,item);
   }
+
+  createItem(item:any):Observable<any>{
+    return this._http.post('https://localhost:7075/api/item',item);
+  }
+
+  deleteItem(id:any):Observable<any>{
+    return this._http.delete(`https://localhost:7075/api/item/${id}`);
+  }
 }

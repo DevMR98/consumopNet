@@ -1,5 +1,5 @@
 <header>
-    <div class="row">
+    <div >
         @if (isLogged) {
         <div class="col-12 d-flex justify-content-center">
             <p class="fs-2">Welcome {{userName}}</p>
@@ -10,6 +10,10 @@
             <p class="fs-1">You need logged</p>
         </div>
         }
+    </div>
+
+    <div>
+        <p-button [routerLink]="['/app-item-create']">Nuevo</p-button>
     </div>
     <main class="">
         <p-table #items [value]="product" styleClass="p-datatable-gridlines" paginator="true" [rows]="5">
@@ -31,10 +35,13 @@
                     <td>{{product.departmentName}}</td>
                     <td>
                         <p-button [routerLink]="['/app-item-view',product.itemID]" >
-                            <i class="pi pi-eye"></i>
+                            <i class="pi pi-eye" style="font-size: 0.7rem;"></i>
                         </p-button>
                         <p-button [routerLink]="['/app-item-update',product.itemID]">
-                            <i class="pi pi-file-edit"></i>
+                            <i class="pi pi-file-edit" style="font-size: 0.7rem;"></i>
+                        </p-button>
+                        <p-button (onClick)="confirmDelete(product.itemID)">
+                            <i class="pi pi-trash" style="font-size: 0.7rem;"></i>
                         </p-button>
                     </td>
                 </tr>
